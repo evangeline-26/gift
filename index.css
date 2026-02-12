@@ -1,0 +1,576 @@
+:root {
+  --primary-pink: #ff69b4;
+  --deep-pink: #ff1493;
+  --soft-pink: #ffb6c1;
+  --light-pink: #ffe4e1;
+  --romantic-red: #dc143c;
+  --soft-red: #ff6b6b;
+  --white: #ffffff;
+  --cream: #fff5f5;
+  --gold: #ffd700;
+  --shadow: rgba(255, 105, 180, 0.3);
+  --dark-text: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffe6f2, #ffd1e8, #ffb6d9, #ff9acb);
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--dark-text);
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/src/assets/background/love-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.25;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Floating Hearts Background Animation */
+.hearts-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0; /* Changed to 0 to be behind content but above background */
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  font-size: 24px;
+  animation: float-up 10s infinite ease-in;
+  opacity: 0;
+  color: rgba(220, 20, 60, 0.6);
+  pointer-events: none; /* Double safety to ensure clicks pass through */
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Container */
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Title Styles */
+.main-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  color: var(--romantic-red); /* Changed back to red for better contrast on light background */
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Button Styles */
+.button-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px var(--shadow);
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--romantic-red), var(--deep-pink));
+  color: var(--white);
+  border: none;
+  box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+}
+
+.btn-yes:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 12px 30px var(--shadow);
+}
+
+.btn-no {
+  background: linear-gradient(135deg, #666, #999);
+  color: var(--white);
+}
+
+.btn-no:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-pink), var(--deep-pink));
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px var(--shadow);
+}
+
+/* Gift Cards */
+.gifts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 20px;
+}
+
+.gift-card {
+  background: rgba(255, 255, 255, 0.85); /* Proper transparency */
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.gift-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 105, 180, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: all 0.5s;
+}
+
+.gift-card:hover::before {
+  left: 100%;
+}
+
+.gift-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: var(--primary-pink);
+  box-shadow:
+    0 15px 40px var(--shadow),
+    0 0 20px var(--primary-pink);
+}
+
+.gift-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.gift-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--romantic-red);
+  margin-bottom: 0.5rem;
+}
+
+/* Love Letter Page */
+.letter-container {
+  max-width: 800px;
+  width: 100%;
+  background: rgba(255, 245, 245, 0.9); /* Subtle transparency */
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--gold);
+  position: relative;
+}
+
+.letter-content {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  line-height: 2.5;
+  color: var(--dark-text);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.letter-line {
+  opacity: 0;
+  animation: fadeInLine 1s forwards;
+}
+
+@keyframes fadeInLine {
+  to {
+    opacity: 1;
+  }
+}
+
+.letter-signature {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.5rem;
+  text-align: right;
+  color: var(--romantic-red);
+  margin-top: 2rem;
+}
+
+/* Song List */
+.song-list-container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85); /* Adjusted transparency */
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+}
+
+.song-list-title {
+  font-family: "Great Vibes", cursive;
+  font-size: 3rem;
+  color: var(--romantic-red);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.song-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 228, 225, 0.6); /* Slightly transparent song items */
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.song-item:hover {
+  background: var(--soft-pink);
+  transform: translateX(10px);
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
+.song-number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--romantic-red);
+  margin-right: 1rem;
+  min-width: 40px;
+}
+
+.song-name {
+  flex: 1;
+  font-size: 1.2rem;
+  color: var(--dark-text);
+}
+
+.song-icon {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+/* Photo Gallery */
+.gallery-container {
+  max-width: 1400px;
+  width: 100%;
+  padding: 2rem;
+}
+
+.gallery-title {
+  font-family: "Great Vibes", cursive;
+  font-size: 3.5rem;
+  color: var(--romantic-red);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.photo-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.photo-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px var(--shadow);
+}
+
+.photo-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.photo-caption {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.photo-caption-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--dark-text);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  position: relative;
+  animation: zoomIn 0.4s;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+.modal-caption {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: var(--white);
+  border: none;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--romantic-red);
+}
+
+/* Back Button */
+.back-button {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, var(--primary-pink), var(--deep-pink));
+  color: var(--white);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
+.back-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+/* Angry Letter Shake */
+.shake {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--primary-pink);
+  position: absolute;
+  animation: confetti-fall 3s linear;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+
+  .gifts-container {
+    grid-template-columns: 1fr;
+  }
+
+  .letter-content {
+    font-size: 1.4rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Page Transitions */
+.page-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.5s ease;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.5s ease;
+}
